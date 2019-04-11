@@ -5,10 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.IntConsumer;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
@@ -52,7 +52,8 @@ public class Lambdas {
                 return !s.isEmpty();
             }
         }));
-        System.out.println(filter(stringList, (String s) -> !s.isEmpty()));
+        Predicate<String> predicate = (String s) -> !s.isEmpty();
+        System.out.println(filter(stringList, predicate));
 
         Consumer<Integer> consumer = (Integer i) -> System.out.println(i);
         forEach(Arrays.asList(1, 2, 3, 4, 5), consumer);
@@ -67,8 +68,12 @@ public class Lambdas {
 
         IntPredicate intPredicate = (int i) -> i % 2 == 0;
         System.out.println(intPredicate.test(1000));
-        Predicate<Integer> predicate = (Integer i) -> i % 2 == 0;
-        System.out.println(predicate.test(1000));
+        Predicate<Integer> predicate2 = (Integer i) -> i % 2 == 0;
+        System.out.println(predicate2.test(1000));
+
+        int a = 3;
+        IntConsumer intConsumer = b -> System.out.println(a);
+        intConsumer.accept(1);
     }
 
     private static void process(Runnable runnable) {

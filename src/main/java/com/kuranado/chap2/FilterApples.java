@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @Author: Xinling Jing
@@ -84,6 +85,11 @@ public class FilterApples {
 
         Thread thread2 = new Thread(() -> System.out.println("Hello World!"));
         thread2.start();
+
+        Function<Apple, Integer> function = (Apple apple) -> apple.getWeight();
+        Comparator<Apple> comparator = (apple1, apple2) -> apple1.getWeight().compareTo(apple2.getWeight());
+        Predicate<Apple> predicate = apple -> apple.getWeight() > 100;
+
     }
 
     private static List<Apple> filterGreenApples(List<Apple> inventory) {
@@ -135,7 +141,7 @@ public class FilterApples {
     @Data
     static class Apple {
 
-        private int weight;
+        private Integer weight;
         private String color;
 
         Apple(int weight, String color) {
