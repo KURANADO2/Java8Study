@@ -30,9 +30,21 @@ public class Dish {
             new Dish("prawns", false, 400, Dish.TypeEnum.FISH),
             new Dish("salmon", false, 450, Dish.TypeEnum.FISH));
 
+    /**
+     * 菜单分类
+     */
     public enum TypeEnum {
         MEAT,
         FISH,
         OTHER
+    }
+
+    /**
+     * 热量分类
+     */
+    public enum CaloricLevelEnum {
+        DIET,
+        NORMAL,
+        FAT
     }
 }

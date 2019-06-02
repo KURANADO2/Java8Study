@@ -180,7 +180,7 @@ public class Filter {
         System.out.println(uniqueWords);
 
         // 由函数生成流
-        // iterate 创建无限流-
+        // iterate 创建无限流
         Stream.iterate(0, n -> n + 1).limit(10).forEach(System.out::println);
         // 生成斐波那契元组
         Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]}).limit(10).forEach(t -> System.out.println(
