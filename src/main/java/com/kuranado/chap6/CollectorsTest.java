@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -175,6 +176,22 @@ public class CollectorsTest {
         System.out.println(JsonUtils.format(mostCaloricPartitionByIsVegetarian));
         // 素数和非素数
         System.out.println(isPrime(5));
+
+        // Map Key 和 Value 一一对应（和 groupingBy 不同，此处 Value 不是 List）
+        List<Person> persions = new ArrayList<>();
+        Person p = new Person();
+        p.setName("xiaoming");
+        p.setAge(18);
+        p.setAddress("Shanghai");
+        persions.add(p);
+        Person p2 = new Person();
+        p2.setName("xiaowang");
+        p2.setAge(19);
+        p2.setAddress("Hangzhou");
+        persions.add(p2);
+        Map<String, Person> map = persions.stream().collect(Collectors.toMap(Person::getName, Function.identity()));
+        System.out.println(JSON.toJSONString(map.get("xiaoming")));
+        System.out.println(JSON.toJSONString(map.get("xiaowang")));
     }
 
     private static boolean isPrime(int n) {
@@ -218,4 +235,10 @@ public class CollectorsTest {
         EUR, USD, JPY, GBP, CHF
     }
 
+    @Data
+    static class Person {
+        private String name;
+        private Integer age;
+        private String address;
+    }
 }
